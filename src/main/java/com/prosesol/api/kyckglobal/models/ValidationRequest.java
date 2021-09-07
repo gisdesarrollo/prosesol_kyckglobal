@@ -1,4 +1,5 @@
-package com.prosesol.api.kyckglobal.models.dao;
+package com.prosesol.api.kyckglobal.models;
+
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
@@ -6,32 +7,33 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@JacksonXmlRootElement(localName = "loadRequest")
-public class LoadRequestDao implements Serializable {
+@JacksonXmlRootElement(localName = "validationRequest")
+public class ValidationRequest implements Serializable {
 
     private static final long serialVersionUID = 21L;
 
-    @NotNull(message = "Receive Agent ID cannot be null")
-    private String receiveAgentId;
+    @NotNull(message = "Process DateTime cannot be null")
+    private Date processDateTime;
+
+    @NotNull(message = "Receive Agent cannot be null")
+    private String receiveAgent;
 
     @NotNull(message = "Receive Code cannot be null")
     private String receiveCode;
 
-    @NotNull(message = "Reference Number cannot be null")
-    private String referenceNumber;
-
-    @NotNull(message = "Send Date cannot be null")
-    private Date sendDate;
-
+    @NotNull(message = "Receive ISO Currency cannot be null")
     private String receiveISOCurrency;
 
+    @NotNull(message = "Receive ISO country cannot be null")
     private String receiveISOCountry;
 
     @NotNull(message = "Receive Account Number cannot be null")
     private long receiveAccountNumber;
 
+    @NotNull(message = "Send ISO Currency cannot be null")
     private String sendISOCurrency;
 
+    @NotNull(message = "Send ISO Country cannot be null")
     private String sendISOCountry;
 
     private double sendFxRate;
@@ -42,7 +44,7 @@ public class LoadRequestDao implements Serializable {
     private double feeAmount;
 
     @NotNull(message = "Recieve Amount cannot be null")
-    private double receiveAmount;
+    private double recieveAmount;
 
     @NotNull(message = "Sender First Name cannot be null")
     private String senderFirstName;
@@ -68,36 +70,26 @@ public class LoadRequestDao implements Serializable {
 
     private Date senderDateOfBirth;
 
-    private String senderPhotoIdType;
+    private String senderPhotoType;
 
     private String senderPhotoIdNumber;
 
     private String senderPhotoIdStateProvince;
 
-    private String senderPhotoIdCountry;
-
-    private String senderLegalIdType;
-
-    private String senderLegalIdNumber;
-
-    private String receiverFirstName;
-
-    private String receiverMiddleName;
-
-    private String receiverLastName;
-
-    private String receiveAccountNumberExpStr;
-
-    private String receiveAccountSwipe;
-
-    private String purposeOfFunds;
-
-    public String getReceiveAgentId() {
-        return receiveAgentId;
+    public Date getProcessDateTime() {
+        return processDateTime;
     }
 
-    public void setReceiveAgentId(String receiveAgentId) {
-        this.receiveAgentId = receiveAgentId;
+    public void setProcessDateTime(Date processDateTime) {
+        this.processDateTime = processDateTime;
+    }
+
+    public String getReceiveAgent() {
+        return receiveAgent;
+    }
+
+    public void setReceiveAgent(String receiveAgent) {
+        this.receiveAgent = receiveAgent;
     }
 
     public String getReceiveCode() {
@@ -106,22 +98,6 @@ public class LoadRequestDao implements Serializable {
 
     public void setReceiveCode(String receiveCode) {
         this.receiveCode = receiveCode;
-    }
-
-    public String getReferenceNumber() {
-        return referenceNumber;
-    }
-
-    public void setReferenceNumber(String referenceNumber) {
-        this.referenceNumber = referenceNumber;
-    }
-
-    public Date getSendDate() {
-        return sendDate;
-    }
-
-    public void setSendDate(Date sendDate) {
-        this.sendDate = sendDate;
     }
 
     public String getReceiveISOCurrency() {
@@ -188,12 +164,12 @@ public class LoadRequestDao implements Serializable {
         this.feeAmount = feeAmount;
     }
 
-    public double getReceiveAmount() {
-        return receiveAmount;
+    public double getRecieveAmount() {
+        return recieveAmount;
     }
 
-    public void setReceiveAmount(double receiveAmount) {
-        this.receiveAmount = receiveAmount;
+    public void setRecieveAmount(double recieveAmount) {
+        this.recieveAmount = recieveAmount;
     }
 
     public String getSenderFirstName() {
@@ -284,12 +260,12 @@ public class LoadRequestDao implements Serializable {
         this.senderDateOfBirth = senderDateOfBirth;
     }
 
-    public String getSenderPhotoIdType() {
-        return senderPhotoIdType;
+    public String getSenderPhotoType() {
+        return senderPhotoType;
     }
 
-    public void setSenderPhotoIdType(String senderPhotoIdType) {
-        this.senderPhotoIdType = senderPhotoIdType;
+    public void setSenderPhotoType(String senderPhotoType) {
+        this.senderPhotoType = senderPhotoType;
     }
 
     public String getSenderPhotoIdNumber() {
@@ -306,77 +282,5 @@ public class LoadRequestDao implements Serializable {
 
     public void setSenderPhotoIdStateProvince(String senderPhotoIdStateProvince) {
         this.senderPhotoIdStateProvince = senderPhotoIdStateProvince;
-    }
-
-    public String getSenderPhotoIdCountry() {
-        return senderPhotoIdCountry;
-    }
-
-    public void setSenderPhotoIdCountry(String senderPhotoIdCountry) {
-        this.senderPhotoIdCountry = senderPhotoIdCountry;
-    }
-
-    public String getSenderLegalIdType() {
-        return senderLegalIdType;
-    }
-
-    public void setSenderLegalIdType(String senderLegalIdType) {
-        this.senderLegalIdType = senderLegalIdType;
-    }
-
-    public String getSenderLegalIdNumber() {
-        return senderLegalIdNumber;
-    }
-
-    public void setSenderLegalIdNumber(String senderLegalIdNumber) {
-        this.senderLegalIdNumber = senderLegalIdNumber;
-    }
-
-    public String getReceiverFirstName() {
-        return receiverFirstName;
-    }
-
-    public void setReceiverFirstName(String receiverFirstName) {
-        this.receiverFirstName = receiverFirstName;
-    }
-
-    public String getReceiverMiddleName() {
-        return receiverMiddleName;
-    }
-
-    public void setReceiverMiddleName(String receiverMiddleName) {
-        this.receiverMiddleName = receiverMiddleName;
-    }
-
-    public String getReceiverLastName() {
-        return receiverLastName;
-    }
-
-    public void setReceiverLastName(String receiverLastName) {
-        this.receiverLastName = receiverLastName;
-    }
-
-    public String getReceiveAccountNumberExpStr() {
-        return receiveAccountNumberExpStr;
-    }
-
-    public void setReceiveAccountNumberExpStr(String receiveAccountNumberExpStr) {
-        this.receiveAccountNumberExpStr = receiveAccountNumberExpStr;
-    }
-
-    public String getReceiveAccountSwipe() {
-        return receiveAccountSwipe;
-    }
-
-    public void setReceiveAccountSwipe(String receiveAccountSwipe) {
-        this.receiveAccountSwipe = receiveAccountSwipe;
-    }
-
-    public String getPurposeOfFunds() {
-        return purposeOfFunds;
-    }
-
-    public void setPurposeOfFunds(String purposeOfFunds) {
-        this.purposeOfFunds = purposeOfFunds;
     }
 }

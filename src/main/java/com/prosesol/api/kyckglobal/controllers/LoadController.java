@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.prosesol.api.kyckglobal.models.dao.LoadRequestDao;
-import com.prosesol.api.kyckglobal.models.dao.LoadResponseDao;
+import com.prosesol.api.kyckglobal.models.LoadRequest;
+import com.prosesol.api.kyckglobal.models.LoadResponse;
 import com.prosesol.api.kyckglobal.models.dto.LoadRequestDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -40,8 +40,8 @@ public class LoadController {
 
         Map<String, Object> mapResponse = new HashMap<>();
 
-        LoadRequestDao loadRequest = loadRequestDto.getLoadRequest();
-        LoadResponseDao loadResponse = new LoadResponseDao();
+        LoadRequest loadRequest = loadRequestDto.getLoadRequest();
+        LoadResponse loadResponse = new LoadResponse();
 
         JacksonXmlModule module = new JacksonXmlModule();
         module.setDefaultUseWrapper(false);
@@ -68,7 +68,7 @@ public class LoadController {
                 int type = reader.next();
 
                 if(type == XMLStreamReader.START_ELEMENT && TARGET_ELEMENT.equals(reader.getLocalName())){
-                    loadResponse = mapper.readValue(reader, LoadResponseDao.class);
+                    loadResponse = mapper.readValue(reader, LoadResponse.class);
                 }
             }
 

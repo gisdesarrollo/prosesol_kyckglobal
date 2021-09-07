@@ -1,16 +1,16 @@
 package com.prosesol.api.kyckglobal.models.dto;
 
-import com.prosesol.api.kyckglobal.models.dao.LoadRequestDao;
+import com.prosesol.api.kyckglobal.models.LoadRequest;
 
 public class LoadRequestDto {
 
-    private LoadRequestDao loadRequest;
+    private LoadRequest loadRequest;
 
-    public LoadRequestDao getLoadRequest() {
+    public LoadRequest getLoadRequest() {
         return loadRequest;
     }
 
-    public void setLoadRequest(LoadRequestDao loadRequest) {
+    public void setLoadRequest(LoadRequest loadRequest) {
         this.loadRequest = loadRequest;
     }
 }
