@@ -1,11 +1,11 @@
-package com.prosesol.api.kyckglobal.models.dao;
+package com.prosesol.api.kyckglobal.models;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.io.Serializable;
 
 @JacksonXmlRootElement(namespace = "xmlns:real=\"http://www.moneygram.com/RealTimeEP\"", localName = "loadResponse")
-public class LoadResponseDao implements Serializable {
+public class LoadResponse implements Serializable {
 
     private static final long serialVersionUID = 21L;
 

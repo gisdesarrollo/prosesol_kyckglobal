@@ -1,16 +1,16 @@
 package com.prosesol.api.kyckglobal.models.dto;
 
-import com.prosesol.api.kyckglobal.models.dao.ValidationRequestDao;
+import com.prosesol.api.kyckglobal.models.ValidationRequest;
 
 public class ValidationRequestDto {
 
-    private ValidationRequestDao validation;
+    private ValidationRequest validation;
 
-    public ValidationRequestDao getValidation() {
+    public ValidationRequest getValidation() {
         return validation;
     }
 
-    public void setValidation(ValidationRequestDao validation) {
+    public void setValidation(ValidationRequest validation) {
         this.validation = validation;
     }
 }
