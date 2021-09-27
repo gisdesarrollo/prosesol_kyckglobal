@@ -4,7 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.io.Serializable;
 
-@JacksonXmlRootElement(namespace = "xmlns:real=\"http://www.moneygram.com/RealTimeEP\"", localName = "validationResponse")
+//@JacksonXmlRootElement(namespace = "xmlns:real=\"http://www.moneygram.com/RealTimeEP\"", localName = "validationResponse")
 public class ValidationResponse implements Serializable {
 
     private static final long serialVersionUID = 21L;
