@@ -1,57 +1,42 @@
 package com.prosesol.api.kyckglobal.models;
 
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@JacksonXmlRootElement(localName = "validationRequest")
+//@JacksonXmlRootElement(localName = "validationRequest")
 public class ValidationRequest implements Serializable {
 
     private static final long serialVersionUID = 21L;
 
-    @NotNull(message = "Process DateTime cannot be null")
     private Date processDateTime;
 
-    @NotNull(message = "Receive Agent cannot be null")
     private String receiveAgent;
 
-    @NotNull(message = "Receive Code cannot be null")
     private String receiveCode;
 
-    @NotNull(message = "Receive ISO Currency cannot be null")
     private String receiveISOCurrency;
 
-    @NotNull(message = "Receive ISO country cannot be null")
     private String receiveISOCountry;
 
-    @NotNull(message = "Receive Account Number cannot be null")
-    private long receiveAccountNumber;
+    private Long receiveAccountNumber;
 
-    @NotNull(message = "Send ISO Currency cannot be null")
     private String sendISOCurrency;
 
-    @NotNull(message = "Send ISO Country cannot be null")
     private String sendISOCountry;
 
     private double sendFxRate;
 
-    @NotNull(message = "Send Amount cannot be null")
     private double sendAmount;
 
     private double feeAmount;
 
-    @NotNull(message = "Recieve Amount cannot be null")
-    private double recieveAmount;
+    private Double receiveAmount;
 
-    @NotNull(message = "Sender First Name cannot be null")
     private String senderFirstName;
 
     private String senderMiddleName;
 
-    @NotNull(message = "Sender Last Name cannot be null")
     private String senderLastName;
 
     private String senderAddress1;
@@ -116,11 +101,11 @@ public class ValidationRequest implements Serializable {
         this.receiveISOCountry = receiveISOCountry;
     }
 
-    public long getReceiveAccountNumber() {
+    public Long getReceiveAccountNumber() {
         return receiveAccountNumber;
     }
 
-    public void setReceiveAccountNumber(long receiveAccountNumber) {
+    public void setReceiveAccountNumber(Long receiveAccountNumber) {
         this.receiveAccountNumber = receiveAccountNumber;
     }
 
@@ -164,12 +149,12 @@ public class ValidationRequest implements Serializable {
         this.feeAmount = feeAmount;
     }
 
-    public double getRecieveAmount() {
-        return recieveAmount;
+    public Double getReceiveAmount() {
+        return receiveAmount;
     }
 
-    public void setRecieveAmount(double recieveAmount) {
-        this.recieveAmount = recieveAmount;
+    public void setReceiveAmount(Double receiveAmount) {
+        this.receiveAmount = receiveAmount;
     }
 
     public String getSenderFirstName() {
