@@ -34,12 +34,12 @@ public class ValidationController {
         ValidationResponse validationResponse = new ValidationResponse();
 
         RelAfiliadoMoneygram afiliadoMoneygram = relAfiliadoMoneygramService
-                .getAfiliadoMoneygramByAfiliado(validationRequestDto.getValidation().getReceiveAccountNumber());
+                .getAfiliadoMoneygramByIdMoneygram(validationRequestDto.getValidation().getRecieveAccountNumber());
 
         // Validar datos necesarios
         requestValidation(validationRequest);
 
-        if(afiliadoMoneygram == null){
+        if(afiliadoMoneygram.getAfiliado().getId() == null){
             validationResponse.setValid("ERROR");
             validationResponse.setPartnerTransactionId(1);
             validationResponse.setMgiErrorCode("1001");
@@ -51,8 +51,7 @@ public class ValidationController {
             return new ResponseEntity<>(mapResponse, HttpStatus.OK);
         }
 
-        if(validationRequestDto.getValidation().getSendAmount() == afiliadoMoneygram.getAfiliado().getServicio().getCostoTitular()
-            && validationRequestDto.getValidation().getReceiveAccountNumber() == afiliadoMoneygram.getAfiliado().getId()){
+        if(validationRequestDto.getValidation().getSendAmount() == afiliadoMoneygram.getAfiliado().getServicio().getCostoTitular()){
             validationResponse.setValid("PASS");
             validationResponse.setPartnerTransactionId(0);
             validationResponse.setMgiErrorCode("1000");
@@ -77,9 +76,9 @@ public class ValidationController {
      * @throws ValidationException
      */
     public void requestValidation(ValidationRequest validationRequest){
-        if(validationRequest.getReceiveAmount() == null){
+        if(validationRequest.getRecieveAmount() == null){
             throw new ValidationException("The receive amount cannot be empty");
-        }else if(validationRequest.getReceiveAccountNumber() == null){
+        }else if(validationRequest.getRecieveAccountNumber() == null){
             throw new ValidationException("The receive account number cannot be empty");
         }
     }
