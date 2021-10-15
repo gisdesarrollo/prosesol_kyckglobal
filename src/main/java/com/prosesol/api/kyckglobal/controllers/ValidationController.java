@@ -26,32 +26,31 @@ public class ValidationController {
     private IRelAfiliadoMoneygramService relAfiliadoMoneygramService;
 
     @PostMapping("validation")
-    public ResponseEntity<?> getResponseValidation(@Valid @RequestBody ValidationRequestDto validationRequestDto){
+    public ResponseEntity<?> getResponseValidation(@Valid @RequestBody ValidationRequest validationRequest){
 
-        Map<String, Object> mapResponse = new HashMap<>();
-
-        ValidationRequest validationRequest = validationRequestDto.getValidation();
+        //Map<String, Object> mapResponse = new HashMap<>();
+        //ValidationRequest validationRequest = validationRequestDto;
         ValidationResponse validationResponse = new ValidationResponse();
 
         RelAfiliadoMoneygram afiliadoMoneygram = relAfiliadoMoneygramService
-                .getAfiliadoMoneygramByIdMoneygram(validationRequestDto.getValidation().getRecieveAccountNumber());
+                .getAfiliadoMoneygramByIdMoneygram(validationRequest.getRecieveAccountNumber());
 
         // Validar datos necesarios
         requestValidation(validationRequest);
-
-        if(afiliadoMoneygram.getAfiliado().getId() == null){
+        
+        
+        if( afiliadoMoneygram == null || afiliadoMoneygram.getAfiliado().getId() == null){
             validationResponse.setValid("ERROR");
             validationResponse.setPartnerTransactionId(1);
             validationResponse.setMgiErrorCode("1001");
             validationResponse.setCustomErrorParams("Internal Server Error");
             validationResponse.setMessage("Afiliate not found");
 
-            mapResponse.put("validationResponse", validationResponse);
-
-            return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+            //mapResponse.put("validationResponse", validationResponse);
+            return new ResponseEntity<>(validationResponse, HttpStatus.OK);
         }
 
-        if(validationRequestDto.getValidation().getSendAmount() == afiliadoMoneygram.getAfiliado().getServicio().getCostoTitular()){
+        if(validationRequest.getSendAmount() == afiliadoMoneygram.getAfiliado().getServicio().getCostoTitular()){
             validationResponse.setValid("PASS");
             validationResponse.setPartnerTransactionId(0);
             validationResponse.setMgiErrorCode("1000");
@@ -65,9 +64,8 @@ public class ValidationController {
             validationResponse.setMessage("The amount is not equal to the total amount of the service");
 
         }
-        mapResponse.put("validationResponse", validationResponse);
-
-        return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+        //mapResponse.put("validationResponse", validationResponse);
+        return new ResponseEntity<>(validationResponse, HttpStatus.OK);
     }
 
     /**
