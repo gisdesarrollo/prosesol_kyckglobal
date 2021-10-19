@@ -11,15 +11,15 @@ public class ValidationRequest implements Serializable {
 
     private Date processDateTime;
 
-    private String recieveAgent;
+    private String receiveAgent;
 
-    private String recieveCode;
+    private String receiveCode;
 
-    private String recieveISOCurrency;
+    private String receiveISOCurrency;
 
-    private String recieveISOCountry;
+    private String receiveISOCountry;
 
-    private String recieveAccountNumber;
+    private String receiveAccountNumber;
 
     private String sendISOCurrency;
 
@@ -31,7 +31,7 @@ public class ValidationRequest implements Serializable {
 
     private double feeAmount;
 
-    private Double recieveAmount;
+    private Double receiveAmount;
 
     private String senderFirstName;
 
@@ -69,47 +69,55 @@ public class ValidationRequest implements Serializable {
         this.processDateTime = processDateTime;
     }
 
-    public String getRecieveAgent() {
-        return recieveAgent;
-    }
+    public String getReceiveAgent() {
+		return receiveAgent;
+	}
 
-    public void setRecieveAgent(String recieveAgent) {
-        this.recieveAgent = recieveAgent;
-    }
+	public void setReceiveAgent(String receiveAgent) {
+		this.receiveAgent = receiveAgent;
+	}
 
-    public String getRecieveCode() {
-        return recieveCode;
-    }
+	public String getReceiveCode() {
+		return receiveCode;
+	}
 
-    public void setRecieveCode(String recieveCode) {
-        this.recieveCode = recieveCode;
-    }
+	public void setReceiveCode(String receiveCode) {
+		this.receiveCode = receiveCode;
+	}
 
-    public String getRecieveISOCurrency() {
-        return recieveISOCurrency;
-    }
+	public String getReceiveISOCurrency() {
+		return receiveISOCurrency;
+	}
 
-    public void setRecieveISOCurrency(String recieveISOCurrency) {
-        this.recieveISOCurrency = recieveISOCurrency;
-    }
+	public void setReceiveISOCurrency(String receiveISOCurrency) {
+		this.receiveISOCurrency = receiveISOCurrency;
+	}
 
-    public String getRecieveISOCountry() {
-        return recieveISOCountry;
-    }
+	public String getReceiveISOCountry() {
+		return receiveISOCountry;
+	}
 
-    public void setRecieveISOCountry(String recieveISOCountry) {
-        this.recieveISOCountry = recieveISOCountry;
-    }
+	public void setReceiveISOCountry(String receiveISOCountry) {
+		this.receiveISOCountry = receiveISOCountry;
+	}
 
-    public String getRecieveAccountNumber() {
-        return recieveAccountNumber;
-    }
+	public String getReceiveAccountNumber() {
+		return receiveAccountNumber;
+	}
 
-    public void setRecieveAccountNumber(String recieveAccountNumber) {
-        this.recieveAccountNumber = recieveAccountNumber;
-    }
+	public void setReceiveAccountNumber(String receiveAccountNumber) {
+		this.receiveAccountNumber = receiveAccountNumber;
+	}
 
-    public String getSendISOCurrency() {
+	public Double getReceiveAmount() {
+		return receiveAmount;
+	}
+
+	public void setReceiveAmount(Double receiveAmount) {
+		this.receiveAmount = receiveAmount;
+	}
+
+	public String getSendISOCurrency() {
         return sendISOCurrency;
     }
 
@@ -147,14 +155,6 @@ public class ValidationRequest implements Serializable {
 
     public void setFeeAmount(double feeAmount) {
         this.feeAmount = feeAmount;
-    }
-
-    public Double getRecieveAmount() {
-        return recieveAmount;
-    }
-
-    public void setRecieveAmount(Double recieveAmount) {
-        this.recieveAmount = recieveAmount;
     }
 
     public String getSenderFirstName() {

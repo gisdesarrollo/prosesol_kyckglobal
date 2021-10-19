@@ -33,7 +33,7 @@ public class ValidationController {
         ValidationResponse validationResponse = new ValidationResponse();
 
         RelAfiliadoMoneygram afiliadoMoneygram = relAfiliadoMoneygramService
-                .getAfiliadoMoneygramByIdMoneygram(validationRequest.getRecieveAccountNumber());
+                .getAfiliadoMoneygramByIdMoneygram(validationRequest.getReceiveAccountNumber());
 
         // Validar datos necesarios
         requestValidation(validationRequest);
@@ -74,9 +74,9 @@ public class ValidationController {
      * @throws ValidationException
      */
     public void requestValidation(ValidationRequest validationRequest){
-        if(validationRequest.getRecieveAmount() == null){
+        if(validationRequest.getReceiveAmount() == null){
             throw new ValidationException("The receive amount cannot be empty");
-        }else if(validationRequest.getRecieveAccountNumber() == null){
+        }else if(validationRequest.getReceiveAccountNumber() == null){
             throw new ValidationException("The receive account number cannot be empty");
         }
     }
