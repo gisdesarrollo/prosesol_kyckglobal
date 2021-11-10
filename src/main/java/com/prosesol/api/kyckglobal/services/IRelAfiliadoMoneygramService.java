@@ -4,6 +4,6 @@ import com.prosesol.api.kyckglobal.models.RelAfiliadoMoneygram;
 
 public interface IRelAfiliadoMoneygramService {
 
-    public RelAfiliadoMoneygram getAfiliadoMoneygramByAfiliado(Long id);
+    public RelAfiliadoMoneygram getAfiliadoMoneygramByIdMoneygram(String idMoneygram);
 
 }

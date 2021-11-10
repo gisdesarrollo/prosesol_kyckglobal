@@ -36,11 +36,10 @@ public class LoadController {
     private static final String  TARGET_ELEMENT = "loadResponse";
 
     @PostMapping("load")
-    public ResponseEntity<?> getLoadValidation(@RequestBody LoadRequestDto loadRequestDto){
+    public ResponseEntity<?> getLoadValidation(@RequestBody LoadRequest loadRequest){
 
-        Map<String, Object> mapResponse = new HashMap<>();
-
-        LoadRequest loadRequest = loadRequestDto.getLoadRequest();
+        //Map<String, Object> mapResponse = new HashMap<>();
+        //LoadRequest loadRequest = loadRequestDto.getLoadRequest();
         LoadResponse loadResponse = new LoadResponse();
 
         JacksonXmlModule module = new JacksonXmlModule();
@@ -72,7 +71,7 @@ public class LoadController {
                 }
             }
 
-            mapResponse.put("loadResponse", loadResponse);
+            //mapResponse.put("loadResponse", loadResponse);
 
         }catch (JsonProcessingException jse){
             jse.printStackTrace();
@@ -82,6 +81,6 @@ public class LoadController {
             xmlStreamException.printStackTrace();
         }
 
-        return new ResponseEntity<Map<String, Object>>(mapResponse, HttpStatus.OK);
+        return new ResponseEntity<>(loadResponse, HttpStatus.OK);
     }
 }

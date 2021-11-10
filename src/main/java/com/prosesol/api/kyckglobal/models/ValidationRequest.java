@@ -19,7 +19,7 @@ public class ValidationRequest implements Serializable {
 
     private String receiveISOCountry;
 
-    private Long receiveAccountNumber;
+    private String receiveAccountNumber;
 
     private String sendISOCurrency;
 
@@ -70,46 +70,54 @@ public class ValidationRequest implements Serializable {
     }
 
     public String getReceiveAgent() {
-        return receiveAgent;
-    }
+		return receiveAgent;
+	}
 
-    public void setReceiveAgent(String receiveAgent) {
-        this.receiveAgent = receiveAgent;
-    }
+	public void setReceiveAgent(String receiveAgent) {
+		this.receiveAgent = receiveAgent;
+	}
 
-    public String getReceiveCode() {
-        return receiveCode;
-    }
+	public String getReceiveCode() {
+		return receiveCode;
+	}
 
-    public void setReceiveCode(String receiveCode) {
-        this.receiveCode = receiveCode;
-    }
+	public void setReceiveCode(String receiveCode) {
+		this.receiveCode = receiveCode;
+	}
 
-    public String getReceiveISOCurrency() {
-        return receiveISOCurrency;
-    }
+	public String getReceiveISOCurrency() {
+		return receiveISOCurrency;
+	}
 
-    public void setReceiveISOCurrency(String receiveISOCurrency) {
-        this.receiveISOCurrency = receiveISOCurrency;
-    }
+	public void setReceiveISOCurrency(String receiveISOCurrency) {
+		this.receiveISOCurrency = receiveISOCurrency;
+	}
 
-    public String getReceiveISOCountry() {
-        return receiveISOCountry;
-    }
+	public String getReceiveISOCountry() {
+		return receiveISOCountry;
+	}
 
-    public void setReceiveISOCountry(String receiveISOCountry) {
-        this.receiveISOCountry = receiveISOCountry;
-    }
+	public void setReceiveISOCountry(String receiveISOCountry) {
+		this.receiveISOCountry = receiveISOCountry;
+	}
 
-    public Long getReceiveAccountNumber() {
-        return receiveAccountNumber;
-    }
+	public String getReceiveAccountNumber() {
+		return receiveAccountNumber;
+	}
 
-    public void setReceiveAccountNumber(Long receiveAccountNumber) {
-        this.receiveAccountNumber = receiveAccountNumber;
-    }
+	public void setReceiveAccountNumber(String receiveAccountNumber) {
+		this.receiveAccountNumber = receiveAccountNumber;
+	}
 
-    public String getSendISOCurrency() {
+	public Double getReceiveAmount() {
+		return receiveAmount;
+	}
+
+	public void setReceiveAmount(Double receiveAmount) {
+		this.receiveAmount = receiveAmount;
+	}
+
+	public String getSendISOCurrency() {
         return sendISOCurrency;
     }
 
@@ -147,14 +155,6 @@ public class ValidationRequest implements Serializable {
 
     public void setFeeAmount(double feeAmount) {
         this.feeAmount = feeAmount;
-    }
-
-    public Double getReceiveAmount() {
-        return receiveAmount;
-    }
-
-    public void setReceiveAmount(Double receiveAmount) {
-        this.receiveAmount = receiveAmount;
     }
 
     public String getSenderFirstName() {

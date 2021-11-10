@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface IRelAfiliadoMoneygramDao extends CrudRepository<RelAfiliadoMoneygram, Long> {
 
-    @Query("select ram from RelAfiliadoMoneygram ram where ram.afiliado.id = :id")
-    public RelAfiliadoMoneygram getAfiliadoMoneygramByAfiliado(@Param("id") Long id);
+    @Query("select ram from RelAfiliadoMoneygram ram where ram.idMoneygram = :idMoneygram")
+    public RelAfiliadoMoneygram getAfiliadoMoneygramByIdMoneygram(@Param("idMoneygram") String idMoneygram);
 
 }

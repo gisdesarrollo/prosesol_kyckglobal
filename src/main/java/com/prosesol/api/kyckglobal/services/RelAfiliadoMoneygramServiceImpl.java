@@ -12,7 +12,7 @@ public class RelAfiliadoMoneygramServiceImpl implements IRelAfiliadoMoneygramSer
     private IRelAfiliadoMoneygramDao relAfiliadoMoneygramDao;
 
     @Override
-    public RelAfiliadoMoneygram getAfiliadoMoneygramByAfiliado(Long id) {
-        return relAfiliadoMoneygramDao.getAfiliadoMoneygramByAfiliado(id);
+    public RelAfiliadoMoneygram getAfiliadoMoneygramByIdMoneygram(String idMoneygram) {
+        return relAfiliadoMoneygramDao.getAfiliadoMoneygramByIdMoneygram(idMoneygram);
     }
 }

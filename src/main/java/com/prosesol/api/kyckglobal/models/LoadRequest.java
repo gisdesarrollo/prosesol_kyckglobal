@@ -11,10 +11,10 @@ public class LoadRequest implements Serializable {
 
     private static final long serialVersionUID = 21L;
 
-    @NotNull(message = "Receive Agent ID cannot be null")
+    @NotNull(message = "receive Agent ID cannot be null")
     private String receiveAgentId;
 
-    @NotNull(message = "Receive Code cannot be null")
+    @NotNull(message = "receive Code cannot be null")
     private String receiveCode;
 
     @NotNull(message = "Reference Number cannot be null")
@@ -27,7 +27,7 @@ public class LoadRequest implements Serializable {
 
     private String receiveISOCountry;
 
-    @NotNull(message = "Receive Account Number cannot be null")
+    @NotNull(message = "receive Account Number cannot be null")
     private long receiveAccountNumber;
 
     private String sendISOCurrency;
@@ -41,7 +41,7 @@ public class LoadRequest implements Serializable {
 
     private double feeAmount;
 
-    @NotNull(message = "Recieve Amount cannot be null")
+    @NotNull(message = "receive Amount cannot be null")
     private double receiveAmount;
 
     @NotNull(message = "Sender First Name cannot be null")
@@ -80,35 +80,107 @@ public class LoadRequest implements Serializable {
 
     private String senderLegalIdNumber;
 
-    private String receiverFirstName;
+    private String receiveFirstName;
 
-    private String receiverMiddleName;
+    private String receiveMiddleName;
 
-    private String receiverLastName;
+    private String receiveLastName;
 
     private String receiveAccountNumberExpStr;
 
     private String receiveAccountSwipe;
 
     private String purposeOfFunds;
-
+    
     public String getReceiveAgentId() {
-        return receiveAgentId;
-    }
+		return receiveAgentId;
+	}
 
-    public void setReceiveAgentId(String receiveAgentId) {
-        this.receiveAgentId = receiveAgentId;
-    }
+	public void setReceiveAgentId(String receiveAgentId) {
+		this.receiveAgentId = receiveAgentId;
+	}
 
-    public String getReceiveCode() {
-        return receiveCode;
-    }
+	public String getReceiveCode() {
+		return receiveCode;
+	}
 
-    public void setReceiveCode(String receiveCode) {
-        this.receiveCode = receiveCode;
-    }
+	public void setReceiveCode(String receiveCode) {
+		this.receiveCode = receiveCode;
+	}
 
-    public String getReferenceNumber() {
+	public String getReceiveISOCurrency() {
+		return receiveISOCurrency;
+	}
+
+	public void setReceiveISOCurrency(String receiveISOCurrency) {
+		this.receiveISOCurrency = receiveISOCurrency;
+	}
+
+	public String getReceiveISOCountry() {
+		return receiveISOCountry;
+	}
+
+	public void setReceiveISOCountry(String receiveISOCountry) {
+		this.receiveISOCountry = receiveISOCountry;
+	}
+
+	public long getReceiveAccountNumber() {
+		return receiveAccountNumber;
+	}
+
+	public void setReceiveAccountNumber(long receiveAccountNumber) {
+		this.receiveAccountNumber = receiveAccountNumber;
+	}
+
+	public double getReceiveAmount() {
+		return receiveAmount;
+	}
+
+	public void setReceiveAmount(double receiveAmount) {
+		this.receiveAmount = receiveAmount;
+	}
+
+	public String getReceiveFirstName() {
+		return receiveFirstName;
+	}
+
+	public void setReceiveFirstName(String receiveFirstName) {
+		this.receiveFirstName = receiveFirstName;
+	}
+
+	public String getReceiveMiddleName() {
+		return receiveMiddleName;
+	}
+
+	public void setReceiveMiddleName(String receiveMiddleName) {
+		this.receiveMiddleName = receiveMiddleName;
+	}
+
+	public String getReceiveLastName() {
+		return receiveLastName;
+	}
+
+	public void setReceiveLastName(String receiveLastName) {
+		this.receiveLastName = receiveLastName;
+	}
+
+	public String getReceiveAccountNumberExpStr() {
+		return receiveAccountNumberExpStr;
+	}
+
+	public void setReceiveAccountNumberExpStr(String receiveAccountNumberExpStr) {
+		this.receiveAccountNumberExpStr = receiveAccountNumberExpStr;
+	}
+
+	public String getReceiveAccountSwipe() {
+		return receiveAccountSwipe;
+	}
+
+	public void setReceiveAccountSwipe(String receiveAccountSwipe) {
+		this.receiveAccountSwipe = receiveAccountSwipe;
+	}
+
+	public String getReferenceNumber() {
         return referenceNumber;
     }
 
@@ -122,30 +194,6 @@ public class LoadRequest implements Serializable {
 
     public void setSendDate(Date sendDate) {
         this.sendDate = sendDate;
-    }
-
-    public String getReceiveISOCurrency() {
-        return receiveISOCurrency;
-    }
-
-    public void setReceiveISOCurrency(String receiveISOCurrency) {
-        this.receiveISOCurrency = receiveISOCurrency;
-    }
-
-    public String getReceiveISOCountry() {
-        return receiveISOCountry;
-    }
-
-    public void setReceiveISOCountry(String receiveISOCountry) {
-        this.receiveISOCountry = receiveISOCountry;
-    }
-
-    public long getReceiveAccountNumber() {
-        return receiveAccountNumber;
-    }
-
-    public void setReceiveAccountNumber(long receiveAccountNumber) {
-        this.receiveAccountNumber = receiveAccountNumber;
     }
 
     public String getSendISOCurrency() {
@@ -186,14 +234,6 @@ public class LoadRequest implements Serializable {
 
     public void setFeeAmount(double feeAmount) {
         this.feeAmount = feeAmount;
-    }
-
-    public double getReceiveAmount() {
-        return receiveAmount;
-    }
-
-    public void setReceiveAmount(double receiveAmount) {
-        this.receiveAmount = receiveAmount;
     }
 
     public String getSenderFirstName() {
@@ -330,46 +370,6 @@ public class LoadRequest implements Serializable {
 
     public void setSenderLegalIdNumber(String senderLegalIdNumber) {
         this.senderLegalIdNumber = senderLegalIdNumber;
-    }
-
-    public String getReceiverFirstName() {
-        return receiverFirstName;
-    }
-
-    public void setReceiverFirstName(String receiverFirstName) {
-        this.receiverFirstName = receiverFirstName;
-    }
-
-    public String getReceiverMiddleName() {
-        return receiverMiddleName;
-    }
-
-    public void setReceiverMiddleName(String receiverMiddleName) {
-        this.receiverMiddleName = receiverMiddleName;
-    }
-
-    public String getReceiverLastName() {
-        return receiverLastName;
-    }
-
-    public void setReceiverLastName(String receiverLastName) {
-        this.receiverLastName = receiverLastName;
-    }
-
-    public String getReceiveAccountNumberExpStr() {
-        return receiveAccountNumberExpStr;
-    }
-
-    public void setReceiveAccountNumberExpStr(String receiveAccountNumberExpStr) {
-        this.receiveAccountNumberExpStr = receiveAccountNumberExpStr;
-    }
-
-    public String getReceiveAccountSwipe() {
-        return receiveAccountSwipe;
-    }
-
-    public void setReceiveAccountSwipe(String receiveAccountSwipe) {
-        this.receiveAccountSwipe = receiveAccountSwipe;
     }
 
     public String getPurposeOfFunds() {
