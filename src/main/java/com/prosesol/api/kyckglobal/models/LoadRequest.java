@@ -1,20 +1,15 @@
 package com.prosesol.api.kyckglobal.models;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@JacksonXmlRootElement(localName = "loadRequest")
 public class LoadRequest implements Serializable {
 
     private static final long serialVersionUID = 21L;
 
-    @NotNull(message = "receive Agent ID cannot be null")
     private String receiveAgentId;
 
-    @NotNull(message = "receive Code cannot be null")
     private String receiveCode;
 
     @NotNull(message = "Reference Number cannot be null")
@@ -27,29 +22,25 @@ public class LoadRequest implements Serializable {
 
     private String receiveISOCountry;
 
-    @NotNull(message = "receive Account Number cannot be null")
-    private long receiveAccountNumber;
+    private String receiveAccountNumber;
 
     private String sendISOCurrency;
 
     private String sendISOCountry;
 
-    private double sendFxRate;
+    private Double sendFxRate;
 
-    @NotNull(message = "Send Amount cannot be null")
-    private double sendAmount;
+    private Double sendAmount;
 
-    private double feeAmount;
+    private Double feeAmount;
 
     @NotNull(message = "receive Amount cannot be null")
-    private double receiveAmount;
+    private Double receiveAmount;
 
-    @NotNull(message = "Sender First Name cannot be null")
     private String senderFirstName;
 
     private String senderMiddleName;
 
-    @NotNull(message = "Sender Last Name cannot be null")
     private String senderLastName;
 
     private String senderAddress1;
@@ -124,19 +115,19 @@ public class LoadRequest implements Serializable {
 		this.receiveISOCountry = receiveISOCountry;
 	}
 
-	public long getReceiveAccountNumber() {
+	public String getReceiveAccountNumber() {
 		return receiveAccountNumber;
 	}
 
-	public void setReceiveAccountNumber(long receiveAccountNumber) {
+	public void setReceiveAccountNumber(String receiveAccountNumber) {
 		this.receiveAccountNumber = receiveAccountNumber;
 	}
 
-	public double getReceiveAmount() {
+	public Double getReceiveAmount() {
 		return receiveAmount;
 	}
 
-	public void setReceiveAmount(double receiveAmount) {
+	public void setReceiveAmount(Double receiveAmount) {
 		this.receiveAmount = receiveAmount;
 	}
 
@@ -212,27 +203,27 @@ public class LoadRequest implements Serializable {
         this.sendISOCountry = sendISOCountry;
     }
 
-    public double getSendFxRate() {
+    public Double getSendFxRate() {
         return sendFxRate;
     }
 
-    public void setSendFxRate(double sendFxRate) {
+    public void setSendFxRate(Double sendFxRate) {
         this.sendFxRate = sendFxRate;
     }
 
-    public double getSendAmount() {
+    public Double getSendAmount() {
         return sendAmount;
     }
 
-    public void setSendAmount(double sendAmount) {
+    public void setSendAmount(Double sendAmount) {
         this.sendAmount = sendAmount;
     }
 
-    public double getFeeAmount() {
+    public Double getFeeAmount() {
         return feeAmount;
     }
 
-    public void setFeeAmount(double feeAmount) {
+    public void setFeeAmount(Double feeAmount) {
         this.feeAmount = feeAmount;
     }
 
