@@ -152,6 +152,10 @@ public class Afiliado implements Serializable {
     @JoinColumn(name = "id_servicio")
     private Servicio servicio;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_afiliado")
+    private Set<Pago> pago;
+
     @Transient
     private Integer corte;
 
@@ -436,6 +440,14 @@ public class Afiliado implements Serializable {
 
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
+    }
+
+    public Set<Pago> getPago() {
+        return pago;
+    }
+
+    public void setPago(Set<Pago> pago) {
+        this.pago = pago;
     }
 
     @Override

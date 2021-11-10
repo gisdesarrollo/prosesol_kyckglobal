@@ -6,18 +6,21 @@ import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.prosesol.api.kyckglobal.models.LoadRequest;
 import com.prosesol.api.kyckglobal.models.LoadResponse;
+import com.prosesol.api.kyckglobal.models.Pago;
+import com.prosesol.api.kyckglobal.models.RelAfiliadoMoneygram;
 import com.prosesol.api.kyckglobal.models.dto.LoadRequestDto;
+import com.prosesol.api.kyckglobal.services.IPagoService;
+import com.prosesol.api.kyckglobal.services.IRelAfiliadoMoneygramService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -30,56 +33,55 @@ import java.util.Map;
 @RequestMapping("/api")
 public class LoadController {
 
-    @Value("https://${api.kyckglobal.url}/apis/moneyGramLoadCashAcceptance")
-    private String url;
+    @Autowired
+    private IRelAfiliadoMoneygramService relAfiliadoMoneygramService;
 
-    private static final String  TARGET_ELEMENT = "loadResponse";
+    @Autowired
+    private IPagoService pagoService;
 
-    @PostMapping("load")
-    public ResponseEntity<?> getLoadValidation(@RequestBody LoadRequest loadRequest){
+    @PostMapping(value = "load", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getLoadValidation(@Valid @RequestBody LoadRequest loadRequest){
 
-        //Map<String, Object> mapResponse = new HashMap<>();
-        //LoadRequest loadRequest = loadRequestDto.getLoadRequest();
         LoadResponse loadResponse = new LoadResponse();
+        Pago pago = new Pago();
 
-        JacksonXmlModule module = new JacksonXmlModule();
-        module.setDefaultUseWrapper(false);
-        XmlMapper mapper = new XmlMapper(module);
+        // verificar si se está enviando el id desde el request
+        if(loadRequest.getReceiveAccountNumber() == null){
+            loadResponse.setValid("ERROR");
+            loadResponse.setPartnerTransactionId(1);
+            loadResponse.setMgiErrorCode("1001");
+            loadResponse.setCustomErrorParams("Not Found");
+            loadResponse.setMessage("The field 'Receive Account Number' cannot be empty");
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        try{
-
-            String xml = mapper.writeValueAsString(loadRequest);
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_TYPE, "application/xml");
-
-            HttpEntity<String> request = new HttpEntity<>(xml, headers);
-
-            ResponseEntity<String> result = restTemplate.postForEntity(url, request, String.class);
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
-            XMLInputFactory factory = XMLInputFactory.newFactory();
-            XMLStreamReader reader = factory.createXMLStreamReader(new StringReader(result.getBody()));
-
-            while(reader.hasNext()){
-                int type = reader.next();
-
-                if(type == XMLStreamReader.START_ELEMENT && TARGET_ELEMENT.equals(reader.getLocalName())){
-                    loadResponse = mapper.readValue(reader, LoadResponse.class);
-                }
-            }
-
-            //mapResponse.put("loadResponse", loadResponse);
-
-        }catch (JsonProcessingException jse){
-            jse.printStackTrace();
-        }catch (IOException ioException){
-            ioException.printStackTrace();
-        }catch(XMLStreamException xmlStreamException){
-            xmlStreamException.printStackTrace();
+            return new ResponseEntity<>(loadResponse, HttpStatus.OK);
         }
+
+        RelAfiliadoMoneygram afiliadoMoneygram =
+                relAfiliadoMoneygramService.getAfiliadoMoneygramByIdMoneygram(loadRequest.getReceiveAccountNumber());
+
+        if(afiliadoMoneygram == null){
+            loadResponse.setValid("ERROR");
+            loadResponse.setPartnerTransactionId(1);
+            loadResponse.setMgiErrorCode("1001");
+            loadResponse.setCustomErrorParams("Not Found");
+            loadResponse.setMessage("Account number not found");
+
+            return new ResponseEntity<>(loadResponse, HttpStatus.OK);
+        }
+
+        pago.setMonto(loadRequest.getReceiveAmount());
+        pago.setReferenciaBancaria(loadRequest.getReferenceNumber());
+        pago.setFechaPago(loadRequest.getSendDate());
+        pago.setEstatus("Completed");
+        pago.setTipoTransaccion("Moneygram");
+        pago.setAfiliado(afiliadoMoneygram.getAfiliado());
+
+        pagoService.save(pago);
+
+        loadResponse.setValid("PASS");
+        loadResponse.setPartnerTransactionId(0);
+        loadResponse.setMgiErrorCode("1000");
+        loadResponse.setMessage("SUCCESS");
 
         return new ResponseEntity<>(loadResponse, HttpStatus.OK);
     }
