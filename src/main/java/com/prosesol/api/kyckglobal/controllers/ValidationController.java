@@ -42,14 +42,14 @@ public class ValidationController {
         if( afiliadoMoneygram == null || afiliadoMoneygram.getAfiliado().getId() == null){
             validationResponse.setValid("ERROR");
             validationResponse.setPartnerTransactionId(1);
-            validationResponse.setMgiErrorCode("1001");
-            validationResponse.setCustomErrorParams("Internal Server Error");
+            validationResponse.setMgiErrorCode("1010");
+            validationResponse.setCustomErrorParams("Invalid Account");
             validationResponse.setMessage("Afiliate not found");
 
             //mapResponse.put("validationResponse", validationResponse);
             return new ResponseEntity<>(validationResponse, HttpStatus.OK);
         }
-
+        Double costoServicio = afiliadoMoneygram.getAfiliado().getServicio().getCostoTitular();
         if(validationRequest.getSendAmount() == afiliadoMoneygram.getAfiliado().getServicio().getCostoTitular()){
             validationResponse.setValid("PASS");
             validationResponse.setPartnerTransactionId(0);
@@ -59,9 +59,10 @@ public class ValidationController {
         }else{
             validationResponse.setValid("ERROR");
             validationResponse.setPartnerTransactionId(0);
-            validationResponse.setMgiErrorCode("1002");
-            validationResponse.setCustomErrorParams("Internal Server Error");
-            validationResponse.setMessage("The amount is not equal to the total amount of the service");
+            validationResponse.setMgiErrorCode("9105");
+            validationResponse.setCustomErrorParams(costoServicio.toString());
+            validationResponse.setMessage("You need to pay your exact amount due which is "+costoServicio+" "
+            							+ " USD");
 
         }
         //mapResponse.put("validationResponse", validationResponse);

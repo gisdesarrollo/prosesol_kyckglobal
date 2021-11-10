@@ -17,7 +17,7 @@ public class ValidationExceptionController extends ResponseEntityExceptionHandle
     @ExceptionHandler(ValidationException.class)
     public final ResponseEntity<?> handleValidationBadRequest(ValidationException ve){
         ValidationResponse validationResponse = new ValidationResponse();
-        Map<String, Object> mapResponse = new HashMap<>();
+        //Map<String, Object> mapResponse = new HashMap<>();
 
         validationResponse.setValid("ERROR");
         validationResponse.setPartnerTransactionId(1);
@@ -25,9 +25,9 @@ public class ValidationExceptionController extends ResponseEntityExceptionHandle
         validationResponse.setCustomErrorParams(HttpStatus.BAD_REQUEST.getReasonPhrase());
         validationResponse.setMessage(ve.getMessage());
 
-        mapResponse.put("validationResponse", validationResponse);
+        //mapResponse.put("validationResponse", validationResponse);
 
-        return new ResponseEntity<>(mapResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(validationResponse, HttpStatus.BAD_REQUEST);
 
     }
 
