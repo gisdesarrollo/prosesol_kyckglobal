@@ -9,6 +9,7 @@ import com.prosesol.api.kyckglobal.models.LoadResponse;
 import com.prosesol.api.kyckglobal.models.Pago;
 import com.prosesol.api.kyckglobal.models.RelAfiliadoMoneygram;
 import com.prosesol.api.kyckglobal.models.dto.LoadRequestDto;
+import com.prosesol.api.kyckglobal.models.exception.LoadException;
 import com.prosesol.api.kyckglobal.services.IPagoService;
 import com.prosesol.api.kyckglobal.services.IRelAfiliadoMoneygramService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class LoadController {
 
         LoadResponse loadResponse = new LoadResponse();
         Pago pago = new Pago();
+
+        // Validar datos necesarios
+        requestLoad(loadRequest);
 
         // verificar si se está enviando el id desde el request
         if(loadRequest.getReceiveAccountNumber() == null){
@@ -84,5 +88,17 @@ public class LoadController {
         loadResponse.setMessage("SUCCESS");
 
         return new ResponseEntity<>(loadResponse, HttpStatus.OK);
+    }
+
+    public void requestLoad(LoadRequest loadRequest){
+        if(loadRequest.getReceiveAmount() == null){
+            throw new LoadException("The receive amount field cannot be null");
+        }else if(loadRequest.getReferenceNumber() == null){
+            throw new LoadException("The reference number field cannot be null");
+        }else if(loadRequest.getSendDate() == null){
+            throw new LoadException("The send date field cannot be null");
+        }else if(loadRequest.getReceiveAccountNumber() == null){
+            throw new LoadException("The receive account number cannot be null");
+        }
     }
 }
