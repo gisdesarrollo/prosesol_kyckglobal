@@ -37,9 +37,9 @@ public class Pago implements Serializable {
     @Column(name = "tipo_transaccion")
     private String tipoTransaccion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_afiliado")
-    private Afiliado afiliado;
+    private Afiliado afiliado;*/
 
     public Long getId() {
         return id;
@@ -89,11 +89,11 @@ public class Pago implements Serializable {
         this.tipoTransaccion = tipoTransaccion;
     }
 
-    public Afiliado getAfiliado() {
+    /*public Afiliado getAfiliado() {
         return afiliado;
     }
 
     public void setAfiliado(Afiliado afiliado) {
         this.afiliado = afiliado;
-    }
+    }*/
 }
